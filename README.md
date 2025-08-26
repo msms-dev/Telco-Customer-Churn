@@ -2,7 +2,10 @@
 
 ### The aim of this project is to assist with Telco retaining their customers through analysing and modelling their histrical data.
 
-### Standard code processes, framework & MLOps will be applied
+### Standard code processes, framework & MLOps will be applied.
+
+
+
 
 ## Setup Instructions
 
