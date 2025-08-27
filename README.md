@@ -5,10 +5,10 @@
 ## Aim: to assist the Telco client in retaining their customers through analysis.
 
 
-## Output: a churn propensity model and retention-focused business recommendations
+## Output: a churn propensity model and retention-focused business recommendations.
 
 
-#### Setup Instructions
+#### Setup Instructions:
 
 ##### Clone the repo
 git clone https://github.com/msms-dev/telco_customer_churn.git
