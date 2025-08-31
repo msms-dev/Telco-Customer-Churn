@@ -1,10 +1,11 @@
 import pandas as pd
 import numpy as np
 
+def convert_column_to_numeric(df, column_name):
+    df[column_name] = pd.to_numeric(df[column_name], errors='coerce')
+    return df
+
 def replace_service_values(df, columns, values_to_replace=None, replacement_value='No'):
-    """
-    Replace service-related values like 'No internet service' or 'No phone service' with 'No'.
-    """
     if values_to_replace is None:
         values_to_replace = ['No internet service', 'No phone service']
 
@@ -13,31 +14,20 @@ def replace_service_values(df, columns, values_to_replace=None, replacement_valu
 
     return df
 
-def convert_column_to_numeric(df, column_name):
-    """
-    Convert specified column to numeric type, coercing errors to NaN.
-    """
-    df[column_name] = pd.to_numeric(df[column_name], errors='coerce')
-    return df
-
 def remove_missing_values(df, column_name):
-    """
-    Remove rows where the specified column has missing values.
-    """
-    df = df[df[column_name].notna()]
+    df = df[df[column_name].notna()].copy()
     return df
 
 def data_cleaning_pipeline(df):
-    """
-    Run the full cleaning pipeline on the DataFrame.
-    """
+    df = df.copy()
+
     matching_columns = [
         'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport',
         'StreamingTV', 'StreamingMovies', 'MultipleLines'
     ]
 
-    df = replace_service_values(df, matching_columns)
     df = convert_column_to_numeric(df, column_name='TotalCharges')
+    df = replace_service_values(df, matching_columns)
     df = remove_missing_values(df, column_name='TotalCharges')
 
     return df
