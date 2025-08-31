@@ -5,13 +5,7 @@ import numpy as np
 def create_bins(df, columns, bins=5):
     for col in columns:
         bin_col_name = f"{col}_Bin"
-        try:
-            # Avoid SettingWithCopyWarning
-            df.loc[:, bin_col_name] = pd.qcut(df[col], q=bins, duplicates='drop')
-            print(f"\nBin counts for {col}:")
-            print(df[bin_col_name].value_counts().sort_index())
-        except ValueError as e:
-            print(f"Could not bin {col}: {e}")
+        df.loc[:, bin_col_name] = pd.qcut(df[col], q=bins, duplicates='drop')
     return df
 
 
@@ -37,9 +31,6 @@ def generate_interactions_from_spec(df, interaction_specs):
         df = add_interaction_with_binary_condition(df, feature_1, feature_2, mask_1, mask_2)
     
     return df
-
-
-
 
 
 # Final Pipeline
