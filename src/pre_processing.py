@@ -65,7 +65,7 @@ def scale_continuous_features(df, scaler_type='minmax'):
     return df, scaler
 
 
-def pre_processing_pipelines(df):
+def pre_processing_pipeline(df):
 
     exclude_columns=['customerID', 'Churn']
     scaler_type='minmax'
